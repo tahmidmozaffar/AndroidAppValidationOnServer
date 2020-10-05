@@ -13,6 +13,8 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String BASE_URL = "http://10.0.2.2:8080";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestHeaders requestHeaders = new RequestHeaders();
         requestHeaders.put("signature", Utils.getAppSignature(this).trim());
-        client.post("http://10.0.2.2:8080/books", requestHeaders, null, "", new TextHttpResponseHandler() {
+        client.post(BASE_URL + "/books", requestHeaders, null, "", new TextHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, String response) {
                         Log.d("RESPONSE", response);
